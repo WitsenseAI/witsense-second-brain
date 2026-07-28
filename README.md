@@ -4,7 +4,7 @@ A lightweight personal knowledge base system that turns raw sources — or an ex
 
 ## Credit
 
-The core idea — an LLM that *compiles* a persistent, cross-referenced wiki from your sources instead of re-deriving understanding from scratch on every query — is Andrej Karpathy's "LLM wiki" concept. `llm-wiki.md` in this repo is that idea, written up as a portable schema doc you can hand to any coding agent. All credit for the pattern itself goes to him; this repo is one concrete instantiation of it. (Link his original post here if you're citing a specific source.)
+The core idea — an LLM that *compiles* a persistent, cross-referenced wiki from your sources instead of re-deriving understanding from scratch on every query — is [Andrej Karpathy's "LLM wiki" concept](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). `llm-wiki.md` in this repo is that idea, written up as a portable schema doc you can hand to any coding agent. All credit for the pattern itself goes to him; this repo is one concrete instantiation of it.
 
 ## What this repo adds on top of the original idea
 
