@@ -2,6 +2,19 @@
 
 A lightweight personal knowledge base system that turns raw sources — or an existing codebase — into an evolving wiki. See `llm-wiki.md` for the full idea.
 
+## Credit
+
+The core idea — an LLM that *compiles* a persistent, cross-referenced wiki from your sources instead of re-deriving understanding from scratch on every query — is Andrej Karpathy's "LLM wiki" concept. `llm-wiki.md` in this repo is that idea, written up as a portable schema doc you can hand to any coding agent. All credit for the pattern itself goes to him; this repo is one concrete instantiation of it. (Link his original post here if you're citing a specific source.)
+
+## What this repo adds on top of the original idea
+
+Karpathy's original write-up (`llm-wiki.md`) is intentionally abstract and document-focused — notes, papers, journal entries, a personal research wiki. This repo turns it into something you can drop into a **code repository** and run today:
+
+- **A code-specific workflow, not just a doc-ingest one.** `claude.md` adds `Module`/`Architecture` page types and three concrete workflows — bootstrap, incremental sync, lint — for source code specifically, alongside the original document-ingest flow.
+- **A citation convention that makes staleness detectable.** Every claim on a code page cites `path:line` and a `last_synced_commit`. That's what lets `/lint` mechanically flag "this page describes code that has since changed" instead of silently drifting out of date.
+- **Runnable Claude Code commands, not just instructions.** `.claude/commands/{bootstrap,sync,lint}.md` turn the workflows described in `claude.md` into actual slash commands, so "ask your agent to ingest this" becomes `/bootstrap` and `/sync`.
+- **Model-tiering built into the tooling.** Each command pins its own model tier in frontmatter — a planning-tier model (Opus) for the one-time `/bootstrap` compile, a cheaper model (Sonnet) for routine `/sync` and `/lint`. The original idea doesn't address cost at all; this is this repo's own addition, based on the observation that bootstrap needs holistic judgment but incremental maintenance is mechanical. See "Model strategy" below.
+
 ## What this repo contains
 
 - `raw/` — immutable source documents (doc-ingest use case)
